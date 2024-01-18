@@ -1,0 +1,75 @@
+{% extends 'Flights/layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to Our Airlines</h1>
+        <p class="lead">Explore amazing destinations with our world-class flights.</p>
+        <a href="{% url 'flights:flights' %}" class="btn btn-primary btn-lg">View All Flights</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <img src="{{ t1.image.url }}" class="card-img-top" alt="Flight Image" height="300px">
+                <div class="card-body">
+                    <h5 class="card-title">Flight to Paradise</h5>
+                    <p class="card-text">
+                        Experience luxury and comfort on our flights to breathtaking destinations.
+                        This flight takes you to a tropical paradise, offering beautiful beaches, vibrant culture, and delicious cuisine.
+                        Don't miss the chance to explore this dream destination!
+                    </p>
+                    <a href="#" class="btn btn-secondary">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <img src="{{ t2.image.url }}" class="card-img-top" alt="Flight Image" height="300px">
+                <div class="card-body">
+                    <h5 class="card-title">Explore New Horizons</h5>
+                    <p class="card-text">
+                        Discover new adventures and create lasting memories with our flights.
+                        This flight takes you to an enchanting destination with diverse landscapes, historical landmarks, and friendly locals.
+                        Embark on a journey to explore the wonders of this hidden gem!
+                    </p>
+                    <a href="#" class="btn btn-secondary">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Section -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">About Us</h2>
+        <p class="lead text-center">
+            We are committed to providing exceptional travel experiences and connecting you to the world's most captivating destinations.
+            With a focus on comfort, safety, and exploration, our airline is your gateway to extraordinary adventures.
+        </p>
+    </div>
+
+    <!-- What We Do Section -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">What We Do</h2>
+        <p class="lead text-center">
+            Our mission is to make travel seamless and enjoyable for our passengers.
+            We offer a range of sewrvices, from luxurious flights to personalized travel experiences, ensuring every journey is memorable.
+        </p>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Contact Us</h2>
+        <p class="lead text-center">
+            Have questions or need assistance? Reach out to our customer service team. We are here to help!
+        </p>
+        <p class="text-center">
+            Email: <a href="mailto:info@ourairlines.com">info@ourairlines.com</a> <br>
+            Phone: +1 (555) 123-4567
+        </p>
+    </div>
+
+{% endblock %}

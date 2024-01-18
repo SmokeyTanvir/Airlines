@@ -1,0 +1,47 @@
+{% extends 'Flights/layout.html' %}
+
+{% block title %}Flight Details{% endblock %}
+
+{% block body %}
+
+    <div class="jumbotron text-center">
+        <h1 class="display-4">#{{ flight.id }}: {{ flight.origin }} to {{ flight.destination }}</h1>
+        <p class="lead">Flight Details</p>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <p class="card-text">
+                <strong>Estimated Duration:</strong> {{ flight.estimatedDuration }} minutes<br>
+                <strong>Departure Time:</strong> {{ flight.departureTime }}
+            </p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Flight Details</small>
+        </div>
+    </div>
+
+    <h3 class="mb-4">Passengers on this Flight</h3>
+    {% if flight.passengers.count > 0 %}
+        <ul class="list-group">
+            {% for passenger in flight.passengers.all %}
+                <li class="list-group-item">
+                    <div class="d-flex align-items-center">
+                        {% if passenger.profileImage %}
+                            <img src="{{ passenger.profileImage.url }}" alt="{{ passenger.firstName }}'s Profile Picture" class="mr-3 rounded-circle" style="width: 50px; height: 50px;">
+                        {% else %}
+                            <div class="mr-3 rounded-circle" style="width: 50px; height: 50px; background-color: #ccc;"></div>
+                        {% endif %}
+                        <div>
+                            <strong><a href="{% url 'flights:passenger_details' passenger.id %}">{{ passenger.firstName }} {{ passenger.lastName }}</a></strong><br>
+                            <span class="text-muted">Age: {{ passenger.age }}, Gender: {{ passenger.get_gender_display }}</span>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No passengers on this flight yet.</p>
+    {% endif %}
+
+{% endblock %}

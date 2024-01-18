@@ -1,0 +1,30 @@
+{% extends 'Flights/layout.html' %}
+
+{% block title %}Flights{% endblock %}
+
+{% block body %}
+
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Explore Our Flights</h1>
+        <p class="lead">Discover amazing destinations with our wide range of flights.</p>
+    </div>
+
+    <div class="row">
+        {% for flight in flights %}
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'flights:flight_details' flight.id %}" class="text-decoration-none">#{{ flight.id }}: {{ flight.origin }} to {{ flight.destination }}</a>
+                        </h5>
+                        <p class="card-text">
+                            <strong>Estimated Duration:</strong> {{ flight.estimatedDuration }} minutes<br>
+                            <strong>Departure Time:</strong> {{ flight.departureTime }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

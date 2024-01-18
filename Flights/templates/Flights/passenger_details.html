@@ -1,0 +1,52 @@
+{% extends 'Flights/layout.html' %}
+
+{% block title %}Passenger Details{% endblock %}
+
+{% block body %}
+
+    <div class="jumbotron text-center">
+        <h1 class="display-4">{{ passenger.firstName }} {{ passenger.lastName }}</h1>
+        <p class="lead">Passenger Details</p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="text-center">
+                    {% if passenger.profileImage %}
+                        <img src="{{ passenger.profileImage.url }}" alt="{{ passenger.firstName }}'s Profile Picture" class="img-fluid rounded" style="max-width: 200px; max-height: 200px;">
+                    {% else %}
+                        <div class="rounded" style="width: 200px; height: 200px; background-color: #ccc;"></div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <strong>First Name:</strong> {{ passenger.firstName }}<br>
+                            <strong>Last Name:</strong> {{ passenger.lastName }}<br>
+                            <strong>Age:</strong> {{ passenger.age }}<br>
+                            <strong>Gender:</strong> {{ passenger.get_gender_display }}<br>
+                            <strong>Email Address: <a href="mailto:{{ passenger.email }}"> </strong> {{ passenger.email }} </a> <br>
+                            <strong>Associated Flights:</strong>
+                            {% if passenger.flights.count > 0 %}
+                                <ul>
+                                    {% for flight in passenger.flights.all %}
+                                        <li> <a href="{% url 'flights:flight_details' flight.id %}"> #{{ flight.id }}: {{ flight.origin }} to {{ flight.destination }} </a> </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                No associated flights.
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Passenger Details</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
