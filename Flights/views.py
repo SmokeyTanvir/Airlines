@@ -16,6 +16,9 @@ def flights(request):
     })
 
 def flight(request, id):
+    if not request.user.is_authenticated:
+        pass
+
     flight = models.Flight.objects.get(pk=id)
 
     return render(request, 'Flights/flight_details.html', {

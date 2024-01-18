@@ -1,0 +1,32 @@
+{% extends 'Flights/layout.html' %}
+
+{% block title %}User Details{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center">User Details</h2>
+            </div>
+            <div class="card-body">
+                <p><strong>Username:</strong> {{ user.username }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>First Name:</strong> {{ user.first_name }}</p>
+                <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+                <p><strong>Is Active:</strong> {{ user.is_active }}</p>
+                <p><strong>Is Staff:</strong> {{ user.is_staff }}</p>
+                <p><strong>Is Superuser:</strong> {{ user.is_superuser }}</p>
+                <p><strong>User Permissions:</strong> {{ user.get_all_permissions }}</p>
+                <!-- Add more user details as needed -->
+
+                <!-- Logout button -->
+                <form method="post" action="{% url 'users:logout' %}" class="mt-3">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

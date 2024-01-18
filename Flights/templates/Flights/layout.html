@@ -22,19 +22,29 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="{% url 'flights:home' %}">Airlines</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'flights:home' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'flights:flights' %}">Flights</a>
-                </li>
+                {% if user.is_authenticated %}
+                    <!-- Display user details link if logged in -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:user_details' %}">Hello, {{ user.username }}!</a>
+                    </li>
+                    <!-- Logout button -->
+                    <li class="nav-item">
+                        <form method="post" action="{% url 'users:logout' %}" class="nav-link p-0">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Logout</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <!-- Login button if not logged in -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:login' %}">Login</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
